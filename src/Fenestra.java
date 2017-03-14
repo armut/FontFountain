@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.ImageObserver;
 
 public class Fenestra extends JFrame {
 
@@ -13,6 +14,7 @@ public class Fenestra extends JFrame {
 
     public Fenestra() {
         initUI();
+        add(new FontSelector(400, HEIGHT), BorderLayout.LINE_START);
     }
 
     private void designFrame() {
@@ -42,8 +44,6 @@ public class Fenestra extends JFrame {
             public void mouseDragged(MouseEvent mouseEvent) {
                 setLocation(mouseEvent.getXOnScreen() - innerPosX,
                         mouseEvent.getYOnScreen() - innerPosY);
-                System.out.println("e: " + mouseEvent.getXOnScreen());
-                System.out.println("x: " + innerPosX);
             }
         });
     }
