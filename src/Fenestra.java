@@ -7,29 +7,20 @@ import java.awt.event.MouseEvent;
 
 public class Fenestra extends JFrame {
 
-    // Class attributes:
-    private final static int WIDTH = 500;
-    private final static int HEIGHT = 400;
-    private final static String title = "Font Fountain";
     private int innerPosX, innerPosY;
     private Palette palette = Palette.getPalette();
     static int ptr = 0;
 
-
-    public Fenestra() {
-        setFrame(palette.mistyRose);
-    }
-
-    private void setFrame(Color bgColor) {
+    public Fenestra(Color bgColor, Color captionColor, String title, int width, int height) {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle(title);
-        setSize(WIDTH, HEIGHT);
+        setSize(width, height);
         setResizable(true);
         setUndecorated(true);
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
         getContentPane().setBackground(bgColor);
-        add(new Caption(palette.middleRedPurple), BorderLayout.PAGE_START);
+        add(new Caption(this, captionColor, title), BorderLayout.PAGE_START);
 
         addMouseListener(new MouseAdapter() {
             @Override

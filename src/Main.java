@@ -6,13 +6,17 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                /*Fenestra[] fen = new Fenestra[4];
-                for(Fenestra f : fen) {
-                    f = new Fenestra();
-                    f.setVisible(true);
-                }*/
-                Fenestra f = new Fenestra();
+                Fenestra f = new Fenestra(Palette.getPalette().deepTaupe,
+                        Palette.getPalette().paynesGrey,
+                        "FontFountain", 500, 300);
                 f.setVisible(true);
+
+                /*Fenestra f2 = new Fenestra(Palette.getPalette().cameoPink,
+                        Palette.getPalette().paynesGrey,
+                        "Font Selector", 200, 200);
+                f2.setVisible(true);*/
+
+                //TODO: Declare one of the fenestra as main and apply it exit_on_close not the others.
             }
         });
     }
