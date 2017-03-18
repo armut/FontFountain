@@ -1,3 +1,4 @@
+package fenestra;
 import java.awt.*;
 
 public class Palette {

@@ -1,3 +1,4 @@
+import fenestra.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,5 +14,6 @@ public class Main {
                         Palette.mistyRose, "Font Viewer", 300, 450);
             }
         });
+        //TODO:The main program will inherit Fenestra Floris.
     }
 }
