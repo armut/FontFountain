@@ -9,7 +9,7 @@ public class Caption extends JPanel {
     private static ImageIcon imgMinOver = new ImageIcon("res/min-over.png");
     private int posX, posY;
 
-    public Caption(JFrame frame, Color bgColor, String title) {
+    public Caption(JFrame frame, Color bgColor, Color titleColor, String title) {
         setBackground(bgColor);
         setLayout(new BorderLayout());
         dragWindow(frame);
@@ -19,12 +19,19 @@ public class Caption extends JPanel {
         jpnlControl.setOpaque(false);
         jpnlControl.add(initCloseButton(frame));
         jpnlControl.add(initMinimizeButton(frame));
-
         add(jpnlControl, BorderLayout.LINE_START);
-        add(initCaptionTitle(title));
+
+        // Add a filler panel to center the caption title.
+        JPanel jpnlFiller = new JPanel();
+        jpnlFiller.setPreferredSize(new Dimension(50, 25));
+        jpnlFiller.setBackground(bgColor);
+        jpnlFiller.setOpaque(true);
+        add(jpnlFiller, BorderLayout.LINE_END);
+
+        add(initCaptionTitle(title, titleColor));
     }
 
-    public Caption(JDialog frame, Color bgColor, String title) {
+    public Caption(JDialog frame, Color bgColor, Color titleColor, String title) {
         setBackground(bgColor);
         setLayout(new BorderLayout());
         dragWindow(frame);
@@ -35,7 +42,7 @@ public class Caption extends JPanel {
         jpnlControl.add(initCloseButton(frame));
 
         add(jpnlControl, BorderLayout.LINE_START);
-        add(initCaptionTitle(title));
+        add(initCaptionTitle(title, titleColor));
     }
 
     private JButton initCloseButton(Window window) {
@@ -94,10 +101,11 @@ public class Caption extends JPanel {
         return jbMin;
     }
 
-    private JPanel initCaptionTitle(String title) {
+    private JPanel initCaptionTitle(String title, Color titleColor) {
         JPanel jpnlTitle = new JPanel();
         jpnlTitle.setOpaque(false);
         JLabel jlblTitle = new JLabel(title);
+        jlblTitle.setForeground(titleColor);
         jpnlTitle.add(jlblTitle);
         return jpnlTitle;
     }
