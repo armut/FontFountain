@@ -40,8 +40,15 @@ public class Caption extends JPanel {
         jpnlControl.setPreferredSize(new Dimension(25, 25));
         jpnlControl.setOpaque(false);
         jpnlControl.add(initCloseButton(frame));
-
         add(jpnlControl, BorderLayout.LINE_START);
+
+        // Add a filler panel to center the caption title.
+        JPanel jpnlFiller = new JPanel();
+        jpnlFiller.setPreferredSize(new Dimension(25, 25));
+        jpnlFiller.setBackground(bgColor);
+        jpnlFiller.setOpaque(true);
+        add(jpnlFiller, BorderLayout.LINE_END);
+
         add(initCaptionTitle(title, titleColor));
     }
 

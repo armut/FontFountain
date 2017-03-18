@@ -9,8 +9,8 @@ public class Main {
             public void run() {
                 Fenestra f = new Fenestra(Palette.deepTaupe, Palette.paynesGrey,
                         Palette.middleRedPurple, "FontFountain", 500, 300);
-                //Floris ff = new Floris(f, Palette.deepTaupe, Palette.paynesGrey,
-                //        Palette.mistyRose, "Font Viewer", 300, 450);
+                Floris ff = new Floris(f, Palette.deepTaupe, Palette.paynesGrey,
+                        Palette.mistyRose, "Font Viewer", 300, 450);
             }
         });
     }
