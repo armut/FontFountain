@@ -1,25 +1,44 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Caption extends JPanel {
     private static ImageIcon imgClose = new ImageIcon("res/close.png");
     private static ImageIcon imgCloseOver = new ImageIcon("res/close-over.png");
     private static ImageIcon imgMin = new ImageIcon("res/min.png");
     private static ImageIcon imgMinOver = new ImageIcon("res/min-over.png");
+    private int posX, posY;
 
     public Caption(JFrame frame, Color bgColor, String title) {
         setBackground(bgColor);
         setLayout(new BorderLayout());
+        dragWindow(frame);
 
         JPanel jpnlControl = new JPanel();
         jpnlControl.setPreferredSize(new Dimension(50, 25));
         jpnlControl.setOpaque(false);
+        jpnlControl.add(initCloseButton(frame));
+        jpnlControl.add(initMinimizeButton(frame));
 
-        /* Close button */
+        add(jpnlControl, BorderLayout.LINE_START);
+        add(initCaptionTitle(title));
+    }
+
+    public Caption(JDialog frame, Color bgColor, String title) {
+        setBackground(bgColor);
+        setLayout(new BorderLayout());
+        dragWindow(frame);
+
+        JPanel jpnlControl = new JPanel();
+        jpnlControl.setPreferredSize(new Dimension(25, 25));
+        jpnlControl.setOpaque(false);
+        jpnlControl.add(initCloseButton(frame));
+
+        add(jpnlControl, BorderLayout.LINE_START);
+        add(initCaptionTitle(title));
+    }
+
+    private JButton initCloseButton(Window window) {
         JButton jbClose = new JButton(imgClose);
         jbClose.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jbClose.setOpaque(false);
@@ -30,7 +49,7 @@ public class Caption extends JPanel {
         jbClose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
+                window.dispose();
             }
         });
         jbClose.addMouseListener(new MouseAdapter() {
@@ -44,10 +63,10 @@ public class Caption extends JPanel {
                 jbClose.setIcon(imgClose);
             }
         });
-        jpnlControl.add(jbClose);
-        /* Close button */
+        return jbClose;
+    }
 
-        /* Minimize button */
+    private JButton initMinimizeButton(JFrame frame) {
         JButton jbMin = new JButton(imgMin);
         jbMin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jbMin.setOpaque(false);
@@ -72,15 +91,31 @@ public class Caption extends JPanel {
                 jbMin.setIcon(imgMin);
             }
         });
-        jpnlControl.add(jbMin);
-        /* Minimize button */
+        return jbMin;
+    }
 
-        add(jpnlControl, BorderLayout.LINE_START);
-
+    private JPanel initCaptionTitle(String title) {
         JPanel jpnlTitle = new JPanel();
         jpnlTitle.setOpaque(false);
         JLabel jlblTitle = new JLabel(title);
         jpnlTitle.add(jlblTitle);
-        add(jpnlTitle, BorderLayout.CENTER);
+        return jpnlTitle;
+    }
+
+    private void dragWindow(Window window) {
+        window.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                posX = mouseEvent.getX();
+                posY = mouseEvent.getY();
+            }
+        });
+        window.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent mouseEvent) {
+                window.setLocation(mouseEvent.getXOnScreen() - posX,
+                        mouseEvent.getYOnScreen() - posY);
+            }
+        });
     }
 }
