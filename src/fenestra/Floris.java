@@ -13,8 +13,8 @@ public class Floris extends JDialog {
         setResizable(true);
         setUndecorated(true);
         setLayout(new BorderLayout());
+        setLocationRelativeTo(parent);
         getContentPane().setBackground(bgColor);
         add(new Caption(this, captionColor, titleColor, title), BorderLayout.PAGE_START);
-        setVisible(true);
     }
 }

@@ -2,9 +2,11 @@ import fenestra.Palette;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel extends JPanel implements ActionListener {
     private final Color MENU_FORECOLOR = Palette.middleRedPurple;
     private final Color MENU_BACKCOLOR = Palette.paynesGrey;
     private final Font MENU_FONT = new Font("Courier", Font.BOLD, 10);
@@ -18,7 +20,8 @@ public class MenuPanel extends JPanel {
         jmbMenu.setBackground(Palette.halayaUbe);
         jmbMenu.setBorderPainted(false);
 
-        // JMenuItem arrays for every JMenu:
+        /* JMenuItem arrays for every JMenu */
+        // File menu items:
         ArrayList<JMenuItem> fileMenuItems = new ArrayList<>();
         JMenuItem jmLoadFont = generateMenuItem("LOAD FONT");
         JMenuItem jmDump = generateMenuItem("DUMP FONT LIST");
@@ -26,7 +29,10 @@ public class MenuPanel extends JPanel {
         fileMenuItems.add(jmLoadFont);
         fileMenuItems.add(jmDump);
         fileMenuItems.add(jmSettings);
+        for(JMenuItem item : fileMenuItems)
+                item.addActionListener(this);
 
+        // View menu items:
         ArrayList<JMenuItem> viewMenuItems = new ArrayList<>();
         JMenuItem jmSelector = generateMenuItem("FONT SELECTOR");
         JMenuItem jmComparator = generateMenuItem("FONT COMPARATOR");
@@ -34,7 +40,10 @@ public class MenuPanel extends JPanel {
         viewMenuItems.add(jmSelector);
         viewMenuItems.add(jmComparator);
         viewMenuItems.add(jmComposer);
+        for(JMenuItem item : viewMenuItems)
+            item.addActionListener(this);
 
+        // Edit menu items:
         ArrayList<JMenuItem> editMenuItems = new ArrayList<>();
         JMenuItem jmSetBg = generateMenuItem("BACKGROUND COLOR");
         JMenuItem jmSetFg = generateMenuItem("FOREGROUND COLOR");
@@ -42,6 +51,8 @@ public class MenuPanel extends JPanel {
         editMenuItems.add(jmSetSize);
         editMenuItems.add(jmSetBg);
         editMenuItems.add(jmSetFg);
+        for(JMenuItem item : editMenuItems)
+            item.addActionListener(this);
 
         // JMenu instances:
         JMenu fileMenu = generateMenu("FILE", fileMenuItems);
@@ -76,4 +87,16 @@ public class MenuPanel extends JPanel {
         menuItem.setForeground(MENU_FORECOLOR);
         return menuItem;
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("FONT SELECTOR")) {
+            if(FontFountain.fontSelectorDialog.isVisible()) {
+                FontFountain.fontSelectorDialog.setVisible(false);
+            } else {
+                FontFountain.fontSelectorDialog.setVisible(true);
+            }
+        }
+    }
+
 }
