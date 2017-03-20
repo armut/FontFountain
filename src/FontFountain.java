@@ -15,7 +15,7 @@ public class FontFountain extends Fenestra {
         // Loom panel is the main workspace of the window.
         JPanel jpnlLoom = new JPanel(new BorderLayout());
         jpnlLoom.setBackground(bgColor);
-        jpnlLoom.add(new MenuPanel(), BorderLayout.PAGE_START);
+        jpnlLoom.add(new MainMenu(), BorderLayout.PAGE_START);
 
         add(jpnlLoom, BorderLayout.CENTER);
     }
