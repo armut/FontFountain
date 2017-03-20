@@ -22,13 +22,17 @@ public class FontSelector extends JPanel {
         fontsList = new ArrayList<>();
         setPreferredSize(new Dimension(width, height));
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         setBackground(bgColor);
         appendFont(new Font("Courier", Font.PLAIN, 20));
         appendFont(new Font("Courier", Font.PLAIN, 20));
 
-        add(initSearchfield(), BorderLayout.PAGE_START);
-        add(initListBox(), BorderLayout.CENTER);
+        // Placing a filler JPanel to distinguish menu and the other content.
+        JPanel jpnlLoom = new JPanel(new BorderLayout());
+        jpnlLoom.add(initSearchfield(), BorderLayout.PAGE_START);
+        jpnlLoom.add(initListBox(), BorderLayout.CENTER);
+
+        add(new FontSelectorMenu(), BorderLayout.PAGE_START);
+        add(jpnlLoom, BorderLayout.CENTER);
 
         jlFonts.addMouseListener(new MouseAdapter() {
             @Override
