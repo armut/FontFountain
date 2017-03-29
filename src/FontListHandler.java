@@ -8,11 +8,11 @@ import java.util.ArrayList;
 /**
  * zamma on 29.03.2017.
  */
-public class ListBoxHandler implements ListSelectionListener, MouseListener {
+public class FontListHandler implements ListSelectionListener, MouseListener {
     private JList<String> listBox;
     private ArrayList<Font> fontsList;
 
-    public ListBoxHandler(JList<String> listBox, ArrayList<Font> fontsList) {
+    public FontListHandler(JList<String> listBox, ArrayList<Font> fontsList) {
         this.listBox = listBox;
         this.fontsList = fontsList;
     }
