@@ -10,7 +10,7 @@ public abstract class MenuBase extends JPanel implements ActionListener {
     private final Color MENU_PANEL_BACKCOLOR = Palette.halayaUbe;
     private final Color MENU_FORECOLOR = Palette.middleRedPurple;
     private final Color MENU_BACKCOLOR = Palette.paynesGrey;
-    private final Font MENU_FONT = new Font("Courier", Font.BOLD, 10);
+    private final Font MENU_FONT = new Font("Times", Font.BOLD, 10);
     private JMenuBar jmbMenuBar;
 
     public MenuBase() {
