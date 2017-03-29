@@ -13,6 +13,7 @@ public class PreviewPanel extends JPanel {
         setBackground(Palette.deepTaupe);
 
         textPane = new JTextPane();
+        textPane.setBackground(Palette.mistyRose);
         textPane.setFont(FontFountain.currentFont);
 
         scrollPane = new JScrollPane(textPane);

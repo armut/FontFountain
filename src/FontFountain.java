@@ -23,8 +23,16 @@ public class FontFountain extends Fenestra {
         jpnlLoom.setBackground(bgColor);
         jpnlLoom.add(new MainMenu(), BorderLayout.PAGE_START);
         jpnlLoom.add(new PreviewPanel(), BorderLayout.CENTER);
-
         add(jpnlLoom, BorderLayout.CENTER);
+
+        setDefaultFont();
+    }
+
+    private void setDefaultFont() {
+        //TODO: Set default font to the last font used in the last session of this program.
+        currentFontSize = 72;
+        currentFont = new Font("Courier", Font.PLAIN, currentFontSize);
+        PreviewPanel.textPane.setFont(currentFont);
     }
 
 }
