@@ -67,6 +67,7 @@ public class FontSelector extends JPanel {
     }
 
     private JPanel initListBox() {
+        ListBoxHandler handler = new ListBoxHandler(jlFonts, fontsList);
         JPanel jpnlFontList = new JPanel(new BorderLayout());
         jpnlFontList.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                 Palette.darkGunmetal, 3), "Font list" ));
@@ -76,35 +77,8 @@ public class FontSelector extends JPanel {
         jpnlFontList.add(jScrollPane);
 
         // Adding JList a right-click menu:
-        jlFonts.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if(e.isPopupTrigger()) {
-                    JPopupMenu contextMenu = new JPopupMenu();
-                    JMenuItem miApply = new JMenuItem("Apply");
-                    JMenuItem miJmp = new JMenuItem("Jump to dir.");
-                    miApply.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            System.out.println("Apply");
-                        }
-                    });
-                    miJmp.addActionListener((new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            System.out.println("Jmp");
-                        }
-                    }));
-                    contextMenu.add(miApply);
-                    contextMenu.add(miJmp);
-                    contextMenu.show(e.getComponent(), e.getX(), e.getY());
-                }
-            }
-        });
-
-        // Set current font to the selected JList item. Below is just for testing.
-        setCurrentFont(fontsList.get(jlFonts.getSelectedIndex()));
-        System.out.println(FontFountain.currentFont);
+        jlFonts.addMouseListener(handler);
+        jlFonts.addListSelectionListener(handler);
 
         return jpnlFontList;
     }

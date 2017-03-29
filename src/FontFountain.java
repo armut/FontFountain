@@ -7,6 +7,7 @@ import java.awt.*;
 public class FontFountain extends Fenestra {
     static Floris fontSelectorDialog;
     static Font currentFont;
+    static int currentFontSize;
 
     public FontFountain(Color bgColor, Color captionColor, Color titleColor, String title, int width, int height) {
         super(bgColor, captionColor, titleColor, title, width, height);
