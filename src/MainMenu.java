@@ -52,7 +52,7 @@ public class MainMenu extends MenuBase {
         ArrayList<JMenuItem> editMenuItems = new ArrayList<>();
         JMenuItem jmSetBg = generateMenuItem("BACKGROUND COLOR");
         JMenuItem jmSetFg = generateMenuItem("FOREGROUND COLOR");
-        JMenuItem jmSetSize = generateMenuItem("DISPLAY SIZE");
+        JMenuItem jmSetSize = generateMenuItem("FONT SIZE");
         editMenuItems.add(jmSetSize);
         editMenuItems.add(jmSetBg);
         editMenuItems.add(jmSetFg);
@@ -69,6 +69,11 @@ public class MainMenu extends MenuBase {
             } else {
                 FontFountain.fontSelectorDialog.setVisible(true);
             }
+        } else if(e.getActionCommand().equals("FONT SIZE")) {
+            if(FontFountain.fontSizeDialog.isVisible())
+                FontFountain.fontSizeDialog.setVisible(false);
+            else
+                FontFountain.fontSizeDialog.setVisible(true);
         }
     }
 

@@ -1,14 +1,7 @@
 import fenestra.Palette;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class FontSelector extends JPanel {
@@ -67,7 +60,7 @@ public class FontSelector extends JPanel {
     }
 
     private JPanel initListBox() {
-        ListBoxHandler handler = new ListBoxHandler(jlFonts, fontsList);
+        FontListHandler handler = new FontListHandler(jlFonts, fontsList);
         JPanel jpnlFontList = new JPanel(new BorderLayout());
         jpnlFontList.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                 Palette.darkGunmetal, 3), "Font list" ));

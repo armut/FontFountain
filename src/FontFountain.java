@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class FontFountain extends Fenestra {
     static Floris fontSelectorDialog;
+    static Floris fontSizeDialog;
     static Font currentFont;
     static int currentFontSize;
 
@@ -13,6 +14,9 @@ public class FontFountain extends Fenestra {
         super(bgColor, captionColor, titleColor, title, width, height);
         fontSelectorDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Selector", 200, 450);
         fontSelectorDialog.add(new FontSelector(bgColor, width, height));
+
+        fontSizeDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Size", 125, 250);
+        fontSizeDialog.add(new FontSize(bgColor));
 
         // Loom panel is the main workspace of the window.
         JPanel jpnlLoom = new JPanel(new BorderLayout());
