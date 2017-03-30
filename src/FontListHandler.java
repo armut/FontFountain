@@ -63,8 +63,8 @@ public class FontListHandler implements ListSelectionListener, MouseListener {
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
         FontFountain.currentFont = fontsList.get(listBox.getSelectedIndex());
-        //TODO: new Font(...) part of the below have to be beautified.
-        PreviewPanel.textPane.setFont(new Font(FontFountain.currentFont.getName(), Font.PLAIN, 72));
+        PreviewPanel.setPreviewPanelFont(
+                new Font(FontFountain.currentFont.getName(), Font.PLAIN, FontFountain.currentFontSize));
         //TODO: This method runs two times when the value is changed. Why?
     }
 }

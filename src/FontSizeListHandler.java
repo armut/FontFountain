@@ -8,13 +8,13 @@ import java.awt.*;
  */
 public class FontSizeListHandler implements ListSelectionListener {
     private JList<String> sizeList;
-    public FontSizeListHandler(JList sizeList) {
+    public FontSizeListHandler(JList<String> sizeList) {
         this.sizeList = sizeList;
     }
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
         FontFountain.currentFontSize = Integer.parseInt(sizeList.getSelectedValue());
-        PreviewPanel.textPane.setFont(
+        PreviewPanel.setPreviewPanelFont(
                 new Font(FontFountain.currentFont.getName(), Font.PLAIN, FontFountain.currentFontSize)
         );
     }
