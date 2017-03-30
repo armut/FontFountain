@@ -37,13 +37,11 @@ public class PreviewPanel extends JPanel {
                 Font increasedFont = new Font(FontFountain.currentFont.getName(),
                         Font.PLAIN, FontFountain.currentFontSize);
                 setPreviewPanelFont(increasedFont);
-                System.out.println("up" + String.valueOf(FontFountain.currentFontSize));
             } else {
                 FontFountain.currentFontSize--;
                 Font decreasedFont = new Font(FontFountain.currentFont.getName(),
                         Font.PLAIN, FontFountain.currentFontSize);
                 setPreviewPanelFont(decreasedFont);
-                System.out.println("down");
             }
         }
     }
