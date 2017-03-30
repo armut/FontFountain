@@ -17,7 +17,9 @@ public class FontSize extends JPanel {
         setBackground(bgColor);
 
         JPanel jpnlLoom = new JPanel();
+        jpnlLoom.setLayout(new BoxLayout(jpnlLoom, BoxLayout.PAGE_AXIS));
         jpnlLoom.add(initList(sizes));
+        //jpnlLoom.add(initCustomSizeField());
 
         add(jpnlLoom, BorderLayout.CENTER);
     }
@@ -29,8 +31,21 @@ public class FontSize extends JPanel {
         for(int s : sizes)
             listModel.addElement(String.valueOf(s));
         JPanel jpnlList = new JPanel();
+        jpnlList.setBackground(this.getBackground());
+        jpnlList.setBorder(BorderFactory.createLineBorder(this.getBackground(), 10));
+        jpnlList.setLayout(new BoxLayout(jpnlList, BoxLayout.PAGE_AXIS));
         JScrollPane scrollPane = new JScrollPane(jlSizes);
         jpnlList.add(scrollPane);
         return jpnlList;
+    }
+
+    private JPanel initCustomSizeField() {
+        JPanel jpnlCustomSize = new JPanel();
+        JLabel jlbl = new JLabel("Size:");
+        JTextField jtf = new JTextField(4);
+        jtf.setText(String.valueOf(FontFountain.currentFontSize));
+        jpnlCustomSize.add(jlbl);
+        jpnlCustomSize.add(jtf);
+        return jpnlCustomSize;
     }
 }
