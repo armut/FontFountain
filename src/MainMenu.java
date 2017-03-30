@@ -39,10 +39,8 @@ public class MainMenu extends MenuBase {
         ArrayList<JMenuItem> viewMenuItems = new ArrayList<>();
         JMenuItem jmSelector = generateMenuItem("FONT SELECTOR");
         JMenuItem jmComparator = generateMenuItem("FONT COMPARATOR");
-        JMenuItem jmComposer = generateMenuItem("COMPOSER");
         viewMenuItems.add(jmSelector);
         viewMenuItems.add(jmComparator);
-        viewMenuItems.add(jmComposer);
         for(JMenuItem item : viewMenuItems)
             item.addActionListener(this);
         return viewMenuItems;
