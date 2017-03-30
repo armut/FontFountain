@@ -8,6 +8,7 @@ public class FontFountain extends Fenestra {
     static Floris fontSelectorDialog;
     static Floris fontSizeDialog;
     static Floris fontColorChooserDialog;
+    static Floris backgroundColorChooserDialog;
     static Font currentFont;
     static int currentFontSize;
     private PreviewPanel previewPanel;
@@ -20,8 +21,13 @@ public class FontFountain extends Fenestra {
         fontSizeDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Size", 125, 250);
         fontSizeDialog.add(new FontSize(bgColor));
 
-        fontColorChooserDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Color Chooser", 625, 275);
+        fontColorChooserDialog = new Floris(this, bgColor, captionColor,
+                titleColor, "Font Color Chooser", 625, 275);
         fontColorChooserDialog.add(new FontColorChooser());
+
+        backgroundColorChooserDialog = new Floris(this, bgColor, captionColor,
+                titleColor, "Background Color Chooser", 635, 275);
+        backgroundColorChooserDialog.add(new BackgroundColorChooser());
 
         previewPanel = new PreviewPanel();
 

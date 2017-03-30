@@ -79,6 +79,11 @@ public class MainMenu extends MenuBase {
                 FontFountain.fontColorChooserDialog.setVisible(false);
             else
                 FontFountain.fontColorChooserDialog.setVisible(true);
+        } else if(e.getActionCommand().equals("BACKGROUND COLOR")) {
+            if(FontFountain.backgroundColorChooserDialog.isVisible())
+                FontFountain.backgroundColorChooserDialog.setVisible(false);
+            else
+                FontFountain.backgroundColorChooserDialog.setVisible(true);
         }
     }
 
