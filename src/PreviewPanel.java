@@ -28,6 +28,10 @@ public class PreviewPanel extends JPanel {
         textPane.setFont(font);
     }
 
+    public JTextPane getTextPane() {
+        return textPane;
+    }
+
     private class WheelHandler implements MouseWheelListener {
         @Override
         public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {

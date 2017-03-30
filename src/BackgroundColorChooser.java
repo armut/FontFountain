@@ -8,6 +8,6 @@ public class BackgroundColorChooser extends ColorChooserBase {
     }
 
     protected void dye() {
-
+        FontFountain.getPreviewPanel().getTextPane().setBackground(colorChooser.getColor());
     }
 }

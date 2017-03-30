@@ -1,3 +1,5 @@
+import javax.swing.colorchooser.ColorSelectionModel;
+
 /**
  * zamma on 30.03.2017.
  */
@@ -8,6 +10,6 @@ public class FontColorChooser extends ColorChooserBase {
     }
 
     protected void dye() {
-
+        FontFountain.getPreviewPanel().getTextPane().setForeground(colorChooser.getColor());
     }
 }

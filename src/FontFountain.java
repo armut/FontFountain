@@ -11,7 +11,7 @@ public class FontFountain extends Fenestra {
     static Floris backgroundColorChooserDialog;
     static Font currentFont;
     static int currentFontSize;
-    private PreviewPanel previewPanel;
+    private static PreviewPanel previewPanel;
 
     public FontFountain(Color bgColor, Color captionColor, Color titleColor, String title, int width, int height) {
         super(bgColor, captionColor, titleColor, title, width, height);
@@ -56,7 +56,7 @@ public class FontFountain extends Fenestra {
         previewPanel.setFont(currentFont);
     }
 
-    public PreviewPanel getPreviewPanel() {
+    public static PreviewPanel getPreviewPanel() {
         return previewPanel;
     }
 
