@@ -1,3 +1,5 @@
+package menu;
+
 import fenestra.Palette;
 
 import javax.swing.*;

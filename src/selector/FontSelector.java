@@ -1,4 +1,8 @@
+package selector;
+
 import fenestra.Palette;
+import fountain.FontFountain;
+import menu.FontSelectorMenu;
 
 import javax.swing.*;
 import java.awt.*;

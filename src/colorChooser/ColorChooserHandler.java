@@ -1,4 +1,5 @@
-import javax.swing.*;
+package colorChooser;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 

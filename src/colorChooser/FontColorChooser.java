@@ -1,4 +1,6 @@
-import javax.swing.colorchooser.ColorSelectionModel;
+package colorChooser;
+
+import fountain.FontFountain;
 
 /**
  * zamma on 30.03.2017.

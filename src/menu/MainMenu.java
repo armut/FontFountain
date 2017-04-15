@@ -1,3 +1,7 @@
+package menu;
+
+import fountain.FontFountain;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -62,23 +66,23 @@ public class MainMenu extends MenuBase {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("FONT SELECTOR")) {
-            if(FontFountain.fontSelectorDialog.isVisible()) {
+            if( FontFountain.fontSelectorDialog.isVisible()) {
                 FontFountain.fontSelectorDialog.setVisible(false);
             } else {
                 FontFountain.fontSelectorDialog.setVisible(true);
             }
         } else if(e.getActionCommand().equals("FONT SIZE")) {
-            if(FontFountain.fontSizeDialog.isVisible())
+            if( FontFountain.fontSizeDialog.isVisible())
                 FontFountain.fontSizeDialog.setVisible(false);
             else
                 FontFountain.fontSizeDialog.setVisible(true);
         } else if(e.getActionCommand().equals("FONT COLOR")) {
-            if(FontFountain.fontColorChooserDialog.isVisible())
+            if( FontFountain.fontColorChooserDialog.isVisible())
                 FontFountain.fontColorChooserDialog.setVisible(false);
             else
                 FontFountain.fontColorChooserDialog.setVisible(true);
         } else if(e.getActionCommand().equals("BACKGROUND COLOR")) {
-            if(FontFountain.backgroundColorChooserDialog.isVisible())
+            if( FontFountain.backgroundColorChooserDialog.isVisible())
                 FontFountain.backgroundColorChooserDialog.setVisible(false);
             else
                 FontFountain.backgroundColorChooserDialog.setVisible(true);

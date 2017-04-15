@@ -1,4 +1,4 @@
-/**
+package colorChooser; /**
  * zamma on 30.03.2017.
  */
 

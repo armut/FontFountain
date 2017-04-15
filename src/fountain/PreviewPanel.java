@@ -1,3 +1,5 @@
+package fountain;
+
 import fenestra.Palette;
 
 import javax.swing.*;

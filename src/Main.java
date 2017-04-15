@@ -1,5 +1,6 @@
 import fenestra.*;
-import javax.swing.*;
+import fountain.FontFountain;
+
 import java.awt.*;
 
 public class Main {

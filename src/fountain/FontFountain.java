@@ -1,16 +1,23 @@
+package fountain;
+
+import colorChooser.BackgroundColorChooser;
+import colorChooser.FontColorChooser;
 import fenestra.Fenestra;
 import fenestra.Floris;
+import menu.MainMenu;
+import selector.FontSelector;
+import selector.FontSize;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FontFountain extends Fenestra {
-    static Floris fontSelectorDialog;
-    static Floris fontSizeDialog;
-    static Floris fontColorChooserDialog;
-    static Floris backgroundColorChooserDialog;
-    static Font currentFont;
-    static int currentFontSize;
+    public static Floris fontSelectorDialog;
+    public static Floris fontSizeDialog;
+    public static Floris fontColorChooserDialog;
+    public static Floris backgroundColorChooserDialog;
+    public static Font currentFont;
+    public static int currentFontSize;
     private static PreviewPanel previewPanel;
 
     public FontFountain(Color bgColor, Color captionColor, Color titleColor, String title, int width, int height) {
