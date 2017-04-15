@@ -1,6 +1,7 @@
 package menu;
 
 import fountain.FontFountain;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,26 +67,26 @@ public class MainMenu extends MenuBase {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("FONT SELECTOR")) {
-            if( FontFountain.fontSelectorDialog.isVisible()) {
-                FontFountain.fontSelectorDialog.setVisible(false);
+            if( Main.fontSelectorDialog.isVisible()) {
+                Main.fontSelectorDialog.setVisible(false);
             } else {
-                FontFountain.fontSelectorDialog.setVisible(true);
+                Main.fontSelectorDialog.setVisible(true);
             }
         } else if(e.getActionCommand().equals("FONT SIZE")) {
-            if( FontFountain.fontSizeDialog.isVisible())
-                FontFountain.fontSizeDialog.setVisible(false);
+            if( Main.fontSizeDialog.isVisible())
+                Main.fontSizeDialog.setVisible(false);
             else
-                FontFountain.fontSizeDialog.setVisible(true);
+                Main.fontSizeDialog.setVisible(true);
         } else if(e.getActionCommand().equals("FONT COLOR")) {
-            if( FontFountain.fontColorChooserDialog.isVisible())
-                FontFountain.fontColorChooserDialog.setVisible(false);
+            if( Main.fontColorChooserDialog.isVisible())
+                Main.fontColorChooserDialog.setVisible(false);
             else
-                FontFountain.fontColorChooserDialog.setVisible(true);
+                Main.fontColorChooserDialog.setVisible(true);
         } else if(e.getActionCommand().equals("BACKGROUND COLOR")) {
-            if( FontFountain.backgroundColorChooserDialog.isVisible())
-                FontFountain.backgroundColorChooserDialog.setVisible(false);
+            if( Main.backgroundColorChooserDialog.isVisible())
+                Main.backgroundColorChooserDialog.setVisible(false);
             else
-                FontFountain.backgroundColorChooserDialog.setVisible(true);
+                Main.backgroundColorChooserDialog.setVisible(true);
         }
     }
 

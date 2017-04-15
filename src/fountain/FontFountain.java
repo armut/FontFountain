@@ -1,40 +1,18 @@
 package fountain;
 
-import colorChooser.BackgroundColorChooser;
-import colorChooser.FontColorChooser;
 import fenestra.Fenestra;
-import fenestra.Floris;
 import menu.MainMenu;
-import selector.FontSelector;
-import selector.FontSize;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FontFountain extends Fenestra {
-    public static Floris fontSelectorDialog;
-    public static Floris fontSizeDialog;
-    public static Floris fontColorChooserDialog;
-    public static Floris backgroundColorChooserDialog;
     public static Font currentFont;
     public static int currentFontSize;
     private static PreviewPanel previewPanel;
 
     public FontFountain(Color bgColor, Color captionColor, Color titleColor, String title, int width, int height) {
         super(bgColor, captionColor, titleColor, title, width, height);
-        fontSelectorDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Selector", 200, 450);
-        fontSelectorDialog.add(new FontSelector(bgColor, width, height));
-
-        fontSizeDialog = new Floris(this, bgColor, captionColor, titleColor, "Font Size", 125, 250);
-        fontSizeDialog.add(new FontSize(bgColor));
-
-        fontColorChooserDialog = new Floris(this, bgColor, captionColor,
-                titleColor, "Font Color Chooser", 625, 275);
-        fontColorChooserDialog.add(new FontColorChooser());
-
-        backgroundColorChooserDialog = new Floris(this, bgColor, captionColor,
-                titleColor, "Background Color Chooser", 635, 275);
-        backgroundColorChooserDialog.add(new BackgroundColorChooser());
 
         previewPanel = new PreviewPanel();
 
