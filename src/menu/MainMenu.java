@@ -31,10 +31,8 @@ public class MainMenu extends MenuBase {
         ArrayList<JMenuItem> fileMenuItems = new ArrayList<>();
         JMenuItem jmLoadFont = generateMenuItem("LOAD FONT");
         JMenuItem jmDump = generateMenuItem("DUMP FONT LIST");
-        JMenuItem jmSettings = generateMenuItem("SETTINGS");
         fileMenuItems.add(jmLoadFont);
         fileMenuItems.add(jmDump);
-        fileMenuItems.add(jmSettings);
         for(JMenuItem item : fileMenuItems)
             item.addActionListener(this);
         return fileMenuItems;
@@ -43,9 +41,9 @@ public class MainMenu extends MenuBase {
     private ArrayList<JMenuItem> generateViewMenu() {
         ArrayList<JMenuItem> viewMenuItems = new ArrayList<>();
         JMenuItem jmSelector = generateMenuItem("FONT SELECTOR");
-        JMenuItem jmComparator = generateMenuItem("FONT COMPARATOR");
+        JMenuItem jmSetSize = generateMenuItem("FONT SIZE");
         viewMenuItems.add(jmSelector);
-        viewMenuItems.add(jmComparator);
+        viewMenuItems.add(jmSetSize);
         for(JMenuItem item : viewMenuItems)
             item.addActionListener(this);
         return viewMenuItems;
@@ -55,8 +53,6 @@ public class MainMenu extends MenuBase {
         ArrayList<JMenuItem> editMenuItems = new ArrayList<>();
         JMenuItem jmSetBg = generateMenuItem("BACKGROUND COLOR");
         JMenuItem jmSetFg = generateMenuItem("FONT COLOR");
-        JMenuItem jmSetSize = generateMenuItem("FONT SIZE");
-        editMenuItems.add(jmSetSize);
         editMenuItems.add(jmSetBg);
         editMenuItems.add(jmSetFg);
         for(JMenuItem item : editMenuItems)

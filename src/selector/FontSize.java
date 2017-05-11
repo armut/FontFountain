@@ -37,7 +37,7 @@ public class FontSize extends JPanel {
             listModel.addElement(String.valueOf(s));
         JPanel jpnlList = new JPanel();
         jpnlList.setBackground(this.getBackground());
-        jpnlList.setBorder(BorderFactory.createLineBorder(this.getBackground(), 10));
+        jpnlList.setBorder(BorderFactory.createLineBorder(this.getBackground(), 5));
         jpnlList.setLayout(new BoxLayout(jpnlList, BoxLayout.PAGE_AXIS));
         JScrollPane scrollPane = new JScrollPane(jlSizes);
         jpnlList.add(scrollPane);

@@ -33,13 +33,10 @@ public class FontFountain extends Fenestra implements Observer {
 
         add(jpnlLoom, BorderLayout.CENTER);
         add(statusPanel, BorderLayout.SOUTH);
-        //TODO: Status bar.
-
     }
 
     private void setDefaultFont() {
-        //TODO: Set default font to the last font used in the last session of this program.
-        currentFontSize = 72;
+        currentFontSize = 36;
         currentFont = new Font("Courier", Font.PLAIN, currentFontSize);
     }
 

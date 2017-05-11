@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class FontSelector extends JPanel {
     private DefaultListModel<String> listModel;
-    private JList<String> jlFonts;
+    private JList<String> jlFonts; //TODO: Use JTable instead of JList.
     private ArrayList<Font> fontsList;
-    FontListHandler handler;
+    private FontListHandler handler;
 
     public FontSelector(Color bgColor, int width, int height) {
         listModel = new DefaultListModel<>();
@@ -48,10 +48,6 @@ public class FontSelector extends JPanel {
         Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
         for(Font f : fonts)
             appendFont(f);
-    }
-
-    private void setCurrentFont(Font font) {
-        FontFountain.currentFont = font;
     }
 
     private JPanel initSearchfield() {
