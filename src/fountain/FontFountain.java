@@ -22,6 +22,7 @@ public class FontFountain extends Fenestra implements Observer {
         previewPanel = new PreviewPanel();
         previewPanel.setFont(currentFont);
         statusPanel = new StatusPanel();
+        previewPanel.registerObserver(statusPanel);
 
         // Loom panel is the main workspace of the window.
         JPanel jpnlLoom = new JPanel(new BorderLayout());

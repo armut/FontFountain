@@ -1,18 +1,24 @@
 package fountain;
 
 import fenestra.Palette;
+import main.Observer;
+import main.Subject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
 
-public class PreviewPanel extends JPanel {
+public class PreviewPanel extends JPanel implements Subject {
+    private ArrayList<Observer> observers;
     private static JTextPane textPane;
     private JScrollPane scrollPane;
     private String quote = "Don Quixote";
 
     public PreviewPanel() {
+        observers = new ArrayList<>();
+
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         setBackground(Palette.deepTaupe);
 
@@ -39,16 +45,38 @@ public class PreviewPanel extends JPanel {
         public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
             int notches = mouseWheelEvent.getWheelRotation();
             if(notches < 0) {
-                FontFountain.currentFontSize++;
+                notifyObservers(++FontFountain.currentFontSize);
                 Font increasedFont = new Font(FontFountain.currentFont.getName(),
                         Font.PLAIN, FontFountain.currentFontSize);
                 setPreviewPanelFont(increasedFont);
             } else {
-                FontFountain.currentFontSize--;
+                notifyObservers(--FontFountain.currentFontSize);
                 Font decreasedFont = new Font(FontFountain.currentFont.getName(),
                         Font.PLAIN, FontFountain.currentFontSize);
                 setPreviewPanelFont(decreasedFont);
             }
         }
     }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unregisterObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Font font) {
+
+    }
+
+    @Override
+    public void notifyObservers(int size) {
+        for(Observer o : observers)
+            o.update(size);
+    }
+
 }
