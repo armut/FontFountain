@@ -2,6 +2,8 @@ package selector;
 
 import fountain.FontFountain;
 import fountain.PreviewPanel;
+import main.Observer;
+import main.Subject;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -13,13 +15,15 @@ import java.util.ArrayList;
 /**
  * zamma on 29.03.2017.
  */
-public class FontListHandler implements ListSelectionListener, MouseListener {
+public class FontListHandler implements Subject, ListSelectionListener, MouseListener {
+    private ArrayList<Observer> observers;
     private JList<String> listBox;
     private ArrayList<Font> fontsList;
 
     public FontListHandler(JList<String> listBox, ArrayList<Font> fontsList) {
         this.listBox = listBox;
         this.fontsList = fontsList;
+        observers = new ArrayList<>();
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -67,9 +71,24 @@ public class FontListHandler implements ListSelectionListener, MouseListener {
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        FontFountain.currentFont = fontsList.get(listBox.getSelectedIndex());
-        PreviewPanel.setPreviewPanelFont(
-                new Font(FontFountain.currentFont.getName(), Font.PLAIN, FontFountain.currentFontSize));
+        notifyObservers(fontsList.get(listBox.getSelectedIndex()));
         //TODO: This method runs two times when the value is changed. Why?
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unregisterObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Font font) {
+        for(Observer o : observers) {
+            o.update(font);
+        }
     }
 }

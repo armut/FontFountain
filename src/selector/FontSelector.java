@@ -12,11 +12,13 @@ public class FontSelector extends JPanel {
     private DefaultListModel<String> listModel;
     private JList<String> jlFonts;
     private ArrayList<Font> fontsList;
+    FontListHandler handler;
 
     public FontSelector(Color bgColor, int width, int height) {
         listModel = new DefaultListModel<>();
         jlFonts = new JList<>(listModel);
         fontsList = new ArrayList<>();
+        handler = new FontListHandler(jlFonts, fontsList);
         setPreferredSize(new Dimension(width, height));
         setLayout(new BorderLayout());
         setBackground(bgColor);
@@ -64,7 +66,6 @@ public class FontSelector extends JPanel {
     }
 
     private JPanel initListBox() {
-        FontListHandler handler = new FontListHandler(jlFonts, fontsList);
         JPanel jpnlFontList = new JPanel(new BorderLayout());
         jpnlFontList.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                 Palette.darkGunmetal, 3), "Font list" ));
@@ -78,5 +79,9 @@ public class FontSelector extends JPanel {
         jlFonts.addListSelectionListener(handler);
 
         return jpnlFontList;
+    }
+
+    public FontListHandler getHandler() {
+        return handler;
     }
 }

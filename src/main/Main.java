@@ -32,8 +32,11 @@ public class Main {
                     public void run() {
                         System.out.println("I am fontSelectorDialog!");
                         if(ff != null) {
+                            FontSelector fs = new FontSelector(Palette.deepTaupe, WIDTH, HEIGHT);
                             fontSelectorDialog = new Floris(ff, Palette.deepTaupe, Palette.paynesGrey, Palette.middleRedPurple, "Font Selector", 200, 450);
-                            fontSelectorDialog.add(new FontSelector(Palette.deepTaupe, WIDTH, HEIGHT));
+                            fontSelectorDialog.add(fs);
+                            fs.getHandler().registerObserver(ff);
+                            fs.getHandler().registerObserver(ff.getStatusPanel());
                         }
                     }
                 }).start();
