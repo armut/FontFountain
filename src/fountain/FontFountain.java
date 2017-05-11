@@ -56,4 +56,11 @@ public class FontFountain extends Fenestra implements Observer {
         PreviewPanel.setPreviewPanelFont(
                 new Font(FontFountain.currentFont.getName(), Font.PLAIN, FontFountain.currentFontSize));
     }
+
+    @Override
+    public void update(int size) {
+        currentFontSize = size;
+        PreviewPanel.setPreviewPanelFont(
+                new Font(FontFountain.currentFont.getName(), Font.PLAIN, FontFountain.currentFontSize));
+    }
 }

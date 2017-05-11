@@ -46,8 +46,11 @@ public class Main {
                     public void run() {
                         System.out.println("I am fontSizeDialog!");
                         if(ff != null) {
+                            FontSize fs = new FontSize(Palette.deepTaupe);
                             fontSizeDialog = new Floris(ff, Palette.deepTaupe, Palette.paynesGrey, Palette.middleRedPurple, "Font Size", 125, 250);
-                            fontSizeDialog.add(new FontSize(Palette.deepTaupe));
+                            fontSizeDialog.add(fs);
+                            fs.getHandler().registerObserver(ff);
+                            fs.getHandler().registerObserver(ff.getStatusPanel());
                         }
                     }
                 }).start();

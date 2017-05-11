@@ -91,4 +91,9 @@ public class FontListHandler implements Subject, ListSelectionListener, MouseLis
             o.update(font);
         }
     }
+
+    @Override
+    public void notifyObservers(int size) {
+
+    }
 }

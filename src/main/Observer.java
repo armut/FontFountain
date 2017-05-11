@@ -7,4 +7,5 @@ import java.awt.*;
  */
 public interface Observer {
     void update(Font font);
+    void update(int size);
 }

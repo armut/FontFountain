@@ -22,4 +22,9 @@ public class StatusPanel extends JPanel implements Observer {
     public void update(Font font) {
         jlblStatus.setText(font.getName() + ", " + String.valueOf(FontFountain.currentFontSize));
     }
+
+    @Override
+    public void update(int size) {
+        jlblStatus.setText(FontFountain.currentFont.getName() + ", " + String.valueOf(size));
+    }
 }

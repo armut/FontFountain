@@ -9,4 +9,5 @@ public interface Subject {
     void registerObserver(Observer observer);
     void unregisterObserver(Observer observer);
     void notifyObservers(Font font);
+    void notifyObservers(int size);
 }

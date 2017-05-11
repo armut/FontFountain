@@ -11,11 +11,13 @@ import java.awt.*;
 public class FontSize extends JPanel {
     private DefaultListModel<String> listModel;
     private JList<String> jlSizes;
+    private FontSizeListHandler handler;
     private int[] sizes = {4, 6, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 56, 64, 72, 144};
 
     public FontSize(Color bgColor) {
         listModel = new DefaultListModel<>();
         jlSizes = new JList<>(listModel);
+        handler = new FontSizeListHandler(jlSizes);
 
         setLayout(new BorderLayout());
         setBackground(bgColor);
@@ -29,7 +31,6 @@ public class FontSize extends JPanel {
     }
 
     private JPanel initList(int[] sizes) {
-        FontSizeListHandler handler = new FontSizeListHandler(jlSizes);
         jlSizes.addListSelectionListener(handler);
 
         for(int s : sizes)
@@ -51,5 +52,9 @@ public class FontSize extends JPanel {
         jpnlCustomSize.add(jlbl);
         jpnlCustomSize.add(jtf);
         return jpnlCustomSize;
+    }
+
+    public FontSizeListHandler getHandler() {
+        return handler;
     }
 }
