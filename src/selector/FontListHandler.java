@@ -71,11 +71,15 @@ public class FontListHandler implements Subject, ListSelectionListener, MouseLis
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        notifyObservers((Font) tableModel.getValueAt(
-                fontsTable.getSelectedRow(),
-                fontsTable.getSelectedColumn() + 1
-        ));
-        //TODO: This method runs two times when the value is changed. Why?
+        try {
+            notifyObservers((Font) tableModel.getValueAt(
+                    fontsTable.convertRowIndexToModel(fontsTable.getSelectedRow()),
+                    fontsTable.getSelectedColumn() + 1
+            ));
+            //TODO: This method runs two times when the value is changed. Why?
+        } catch(ArrayIndexOutOfBoundsException e) {
+
+        }
     }
 
     @Override

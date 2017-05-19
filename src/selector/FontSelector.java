@@ -1,11 +1,19 @@
 package selector;
 
+import fenestra.Palette;
 import menu.FontSelectorMenu;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.regex.PatternSyntaxException;
 
 public class FontSelector {
     private JPanel jpnlFontSelector;
@@ -14,6 +22,7 @@ public class FontSelector {
     private ListSelectionModel listSelectionModel;
     private final ArrayList<Font> fontsList;
     private FontListHandler handler;
+    private JTextField searchField;
 
     public FontSelector(Color bgColor, int width, int height) {
         fontsList = new ArrayList<>();
@@ -57,13 +66,62 @@ public class FontSelector {
         // Initialize a JScrollPane with our JTable in it.
         JScrollPane scrollPane = new JScrollPane(fontsTable);
 
-        // Add the scrollPane to the panel to show it up.
+        // Add the sub-panels to the loom panel to show them up.
+        jpnlLoom.add(initSearchfield(), BorderLayout.PAGE_START);
         jpnlLoom.add(scrollPane, BorderLayout.CENTER);
 
         jpnlFontSelector.add(new FontSelectorMenu(), BorderLayout.PAGE_START);
         jpnlFontSelector.add(jpnlLoom, BorderLayout.CENTER);
 
         loadSystemFonts();
+    }
+
+    private JPanel initSearchfield() {
+        // Initialize a sorter for filtering operations.
+        TableRowSorter<FontTableModel> sorter = new TableRowSorter<>((FontTableModel)fontsTable.getModel());
+        // Set this sorter as fontsTable's row sorter.
+        fontsTable.setRowSorter(sorter);
+
+        // Initialize a panel for text field.
+        JPanel jpnlSearch = new JPanel(new BorderLayout());
+        jpnlSearch.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                Palette.darkGunmetal, 3), "Search" ));
+        jpnlSearch.setBackground(Palette.deepTaupe);
+
+        // Instantiate the searchField text field and add listeners.
+        searchField = new JTextField();
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent documentEvent) {
+                RowFilter<FontTableModel, Object> rf = null;
+                try {
+                    rf = RowFilter.regexFilter(searchField.getText(), 0);
+                } catch(PatternSyntaxException e) {
+                    return;
+                }
+                sorter.setRowFilter(rf);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent documentEvent) {
+                RowFilter<FontTableModel, Object> rf = null;
+                try {
+                    rf = RowFilter.regexFilter(searchField.getText(), 0);
+                } catch(PatternSyntaxException e) {
+                    return;
+                }
+                sorter.setRowFilter(rf);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent documentEvent) {
+
+            }
+        });
+
+        // Add search field to the panel.
+        jpnlSearch.add(searchField);
+        return jpnlSearch;
     }
 
     public JPanel getPanel() {
