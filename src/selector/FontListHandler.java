@@ -17,13 +17,13 @@ import java.util.ArrayList;
  */
 public class FontListHandler implements Subject, ListSelectionListener, MouseListener {
     private ArrayList<Observer> observers;
-    private JList<String> listBox;
-    private ArrayList<Font> fontsList;
+    private JTable fontsTable;
+    private FontTableModel tableModel;
 
-    public FontListHandler(JList<String> listBox, ArrayList<Font> fontsList) {
-        this.listBox = listBox;
-        this.fontsList = fontsList;
+    public FontListHandler(JTable fontsTable, FontTableModel tableModel) {
         observers = new ArrayList<>();
+        this.fontsTable = fontsTable;
+        this.tableModel = tableModel;
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -71,7 +71,10 @@ public class FontListHandler implements Subject, ListSelectionListener, MouseLis
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        notifyObservers(fontsList.get(listBox.getSelectedIndex()));
+        notifyObservers((Font) tableModel.getValueAt(
+                fontsTable.getSelectedRow(),
+                fontsTable.getSelectedColumn() + 1
+        ));
         //TODO: This method runs two times when the value is changed. Why?
     }
 

@@ -1,83 +1,92 @@
 package selector;
 
-import fenestra.Palette;
-import fountain.FontFountain;
 import menu.FontSelectorMenu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class FontSelector extends JPanel {
-    private DefaultListModel<String> listModel;
-    private JList<String> jlFonts; //TODO: Use JTable instead of JList.
-    private ArrayList<Font> fontsList;
+public class FontSelector {
+    private JPanel jpnlFontSelector;
+    private JTable fontsTable;
+    private FontTableModel tableModel;
+    private ListSelectionModel listSelectionModel;
+    private final ArrayList<Font> fontsList;
     private FontListHandler handler;
 
     public FontSelector(Color bgColor, int width, int height) {
-        listModel = new DefaultListModel<>();
-        jlFonts = new JList<>(listModel);
         fontsList = new ArrayList<>();
-        handler = new FontListHandler(jlFonts, fontsList);
-        setPreferredSize(new Dimension(width, height));
-        setLayout(new BorderLayout());
-        setBackground(bgColor);
+
+        jpnlFontSelector = new JPanel();
+        jpnlFontSelector.setPreferredSize(new Dimension(width, height));
+        jpnlFontSelector.setLayout(new BorderLayout());
+        jpnlFontSelector.setBackground(bgColor);
 
         // Placing a filler JPanel to distinguish menu and the other content.
         JPanel jpnlLoom = new JPanel(new BorderLayout());
-        jpnlLoom.add(initSearchfield(), BorderLayout.PAGE_START);
-        jpnlLoom.add(initListBox(), BorderLayout.CENTER);
 
-        add(new FontSelectorMenu(), BorderLayout.PAGE_START);
-        add(jpnlLoom, BorderLayout.CENTER);
+        // Initialize and setup tableModel.
+        tableModel = new FontTableModel();
+        tableModel.addColumn("Font Names");
+        tableModel.addColumn("Fonts");
+
+        // Initialize and setup fontsTable.
+        fontsTable = new JTable(tableModel);
+        fontsTable.setFillsViewportHeight(true);
+        fontsTable.setShowGrid(false);
+        fontsTable.setTableHeader(null);
+        // Well...Why do we need to get rid of the second column?
+        // The answer is, we are using second column as real Font instances
+        // list and the first one for just their names. When user clicks first
+        // column we are redirecting the input to the second column which
+        // is invisible to the user and holds real font objects.
+        fontsTable.getColumnModel().getColumn(1).setMaxWidth(0);
+        fontsTable.getColumnModel().getColumn(1).setMinWidth(0);
+        fontsTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+
+        // Initialize the handler with parameters needed.
+        handler = new FontListHandler(fontsTable, tableModel);
+
+        // Initialize listSelectionModel and set our JTable's
+        // selection model to our listSelectionModel.
+        listSelectionModel = fontsTable.getSelectionModel();
+        listSelectionModel.addListSelectionListener(handler);
+        fontsTable.setSelectionModel(listSelectionModel);
+
+        // Initialize a JScrollPane with our JTable in it.
+        JScrollPane scrollPane = new JScrollPane(fontsTable);
+
+        // Add the scrollPane to the panel to show it up.
+        jpnlLoom.add(scrollPane, BorderLayout.CENTER);
+
+        jpnlFontSelector.add(new FontSelectorMenu(), BorderLayout.PAGE_START);
+        jpnlFontSelector.add(jpnlLoom, BorderLayout.CENTER);
 
         loadSystemFonts();
     }
 
-    private void appendFont(Font font) {
-        fontsList.add(font);
-        listModel.addElement(font.getName());
-    }
-
-    private void removeFont(int index) {
-        fontsList.remove(index);
-        listModel.remove(index);
-    }
-
-    private void loadSystemFonts() {
-        Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-        for(Font f : fonts)
-            appendFont(f);
-    }
-
-    private JPanel initSearchfield() {
-        JPanel jpnlSearch = new JPanel(new BorderLayout());
-        jpnlSearch.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                Palette.darkGunmetal, 3), "Search" ));
-        jpnlSearch.setBackground(Palette.deepTaupe);
-        JTextField jtfSearch = new JTextField("Search");
-        jpnlSearch.add(jtfSearch);
-
-        return jpnlSearch;
-    }
-
-    private JPanel initListBox() {
-        JPanel jpnlFontList = new JPanel(new BorderLayout());
-        jpnlFontList.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                Palette.darkGunmetal, 3), "Font list" ));
-        jpnlFontList.setBackground(Palette.deepTaupe);
-        jlFonts.setSelectedIndex(0);
-        JScrollPane jScrollPane = new JScrollPane(jlFonts);
-        jpnlFontList.add(jScrollPane);
-
-        // Adding JList a right-click menu:
-        jlFonts.addMouseListener(handler);
-        jlFonts.addListSelectionListener(handler);
-
-        return jpnlFontList;
+    public JPanel getPanel() {
+        return jpnlFontSelector;
     }
 
     public FontListHandler getHandler() {
         return handler;
+    }
+
+    private void loadSystemFonts() {
+        Font[] systemFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+        Collections.addAll(fontsList, systemFonts);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                for(Font f : systemFonts) {
+                    // First column for font names.
+                    // Second column for real font objects.
+                    tableModel.addRow(f.getFontName(), f);
+                }
+                System.out.println("System fonts are loaded.");
+            }
+        });
     }
 }

@@ -7,7 +7,7 @@ import fountain.FontFountain;
 import selector.FontSelector;
 import selector.FontSize;
 
-import java.awt.*;
+import javax.swing.*;
 
 public class Main {
     static final int WIDTH = 400;
@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Where the story begins.");
 
-        EventQueue.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 ff = new FontFountain(Palette.deepTaupe, Palette.paynesGrey,
@@ -34,7 +34,7 @@ public class Main {
                         if(ff != null) {
                             FontSelector fs = new FontSelector(Palette.deepTaupe, WIDTH, HEIGHT);
                             fontSelectorDialog = new Floris(ff, Palette.deepTaupe, Palette.paynesGrey, Palette.middleRedPurple, "Font Selector", 200, 450);
-                            fontSelectorDialog.add(fs);
+                            fontSelectorDialog.add(fs.getPanel());
                             fs.getHandler().registerObserver(ff);
                             fs.getHandler().registerObserver(ff.getStatusPanel());
                         }
