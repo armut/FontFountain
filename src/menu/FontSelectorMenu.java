@@ -1,5 +1,8 @@
 package menu;
 
+import main.Observer;
+import selector.FontSelector;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,16 +20,23 @@ public class FontSelectorMenu extends MenuBase {
     private ArrayList<JMenuItem> generateFileMenu() {
         ArrayList<JMenuItem> fileMenuItems = new ArrayList<>();
         JMenuItem jmRefresh = generateMenuItem("REFRESH");
-        JMenuItem jmRearrange = generateMenuItem("REARRANGE");
         fileMenuItems.add(jmRefresh);
-        fileMenuItems.add(jmRearrange);
         for(JMenuItem item : fileMenuItems)
             item.addActionListener(this);
         return fileMenuItems;
     }
 
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("REFRESH")) {
+            notifyObservers(1);
+        }
+    }
 
+    @Override
+    public void notifyObservers(int dummy) {
+        for( Observer o : observers) {
+            o.update(1);
+        }
     }
 }

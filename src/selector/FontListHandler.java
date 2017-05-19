@@ -77,7 +77,7 @@ public class FontListHandler implements Subject, ListSelectionListener, MouseLis
                     fontsTable.getSelectedColumn() + 1
             ));
             //TODO: This method runs two times when the value is changed. Why?
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch(IndexOutOfBoundsException e) {
 
         }
     }

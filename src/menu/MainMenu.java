@@ -1,11 +1,14 @@
 package menu;
 
 import fountain.FontFountain;
+import main.FontFilter;
 import main.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainMenu extends MenuBase {
@@ -83,7 +86,33 @@ public class MainMenu extends MenuBase {
                 Main.backgroundColorChooserDialog.setVisible(false);
             else
                 Main.backgroundColorChooserDialog.setVisible(true);
+        } else if(e.getActionCommand().equals("LOAD FONT")) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    final JFileChooser fc = new JFileChooser();
+                    fc.addChoosableFileFilter(new FontFilter());
+                    fc.setAcceptAllFileFilterUsed(false);
+                    int result = fc.showOpenDialog(null);
+                    if(result == JFileChooser.APPROVE_OPTION) {
+                        File file = fc.getSelectedFile();
+                        try {
+                            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(
+                                    Font.createFont(Font.TRUETYPE_FONT, file)
+                            );
+                        } catch (FontFormatException e1) {
+                            e1.printStackTrace();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            });
         }
     }
 
+    @Override
+    public void notifyObservers(int dummy) {
+
+    }
 }

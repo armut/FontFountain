@@ -1,6 +1,7 @@
 package selector;
 
 import fenestra.Palette;
+import main.Observer;
 import menu.FontSelectorMenu;
 
 import javax.swing.*;
@@ -15,18 +16,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.PatternSyntaxException;
 
-public class FontSelector {
+public class FontSelector implements Observer {
     private JPanel jpnlFontSelector;
     private JTable fontsTable;
     private FontTableModel tableModel;
+    private TableRowSorter<FontTableModel> sorter;
     private ListSelectionModel listSelectionModel;
-    private final ArrayList<Font> fontsList;
     private FontListHandler handler;
     private JTextField searchField;
 
     public FontSelector(Color bgColor, int width, int height) {
-        fontsList = new ArrayList<>();
-
         jpnlFontSelector = new JPanel();
         jpnlFontSelector.setPreferredSize(new Dimension(width, height));
         jpnlFontSelector.setLayout(new BorderLayout());
@@ -42,6 +41,12 @@ public class FontSelector {
 
         // Initialize and setup fontsTable.
         fontsTable = new JTable(tableModel);
+
+        // Initialize a sorter for filtering operations.
+        sorter = new TableRowSorter<>((FontTableModel)fontsTable.getModel());
+        // Set this sorter as fontsTable's row sorter.
+        fontsTable.setRowSorter(sorter);
+
         fontsTable.setFillsViewportHeight(true);
         fontsTable.setShowGrid(false);
         fontsTable.setTableHeader(null);
@@ -70,18 +75,17 @@ public class FontSelector {
         jpnlLoom.add(initSearchfield(), BorderLayout.PAGE_START);
         jpnlLoom.add(scrollPane, BorderLayout.CENTER);
 
-        jpnlFontSelector.add(new FontSelectorMenu(), BorderLayout.PAGE_START);
+        // Instantiate a FontSelectorMenu and register this class as observer.
+        FontSelectorMenu menu = new FontSelectorMenu();
+        menu.registerObserver(this);
+
+        jpnlFontSelector.add(menu, BorderLayout.PAGE_START);
         jpnlFontSelector.add(jpnlLoom, BorderLayout.CENTER);
 
         loadSystemFonts();
     }
 
     private JPanel initSearchfield() {
-        // Initialize a sorter for filtering operations.
-        TableRowSorter<FontTableModel> sorter = new TableRowSorter<>((FontTableModel)fontsTable.getModel());
-        // Set this sorter as fontsTable's row sorter.
-        fontsTable.setRowSorter(sorter);
-
         // Initialize a panel for text field.
         JPanel jpnlSearch = new JPanel(new BorderLayout());
         jpnlSearch.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
@@ -133,18 +137,39 @@ public class FontSelector {
     }
 
     private void loadSystemFonts() {
-        Font[] systemFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
-        Collections.addAll(fontsList, systemFonts);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Font[] systemFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+                // If the table is not empty, then this function must be called at least once.
+                // So, this time the caller wants to refresh the table. Clear the table and populate it again.
+                if(tableModel.getRowCount() > 0) {
+                    tableModel.setRowCount(0);
+                    System.out.println("Table is cleared.");
+                }
+
                 for(Font f : systemFonts) {
                     // First column for font names.
                     // Second column for real font objects.
                     tableModel.addRow(f.getFontName(), f);
                 }
                 System.out.println("System fonts are loaded.");
+
+                ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>();
+                sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+                sorter.setSortKeys(sortKeys);
+                System.out.println("Fonts are sorted.");
             }
         });
+    }
+
+    @Override
+    public void update(Font dummy) {
+
+    }
+
+    @Override
+    public void update(int dummy) {
+        loadSystemFonts();
     }
 }

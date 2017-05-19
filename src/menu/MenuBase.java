@@ -1,14 +1,17 @@
 package menu;
 
 import fenestra.Palette;
+import main.Observer;
+import main.Subject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public abstract class MenuBase extends JPanel implements ActionListener {
+public abstract class MenuBase extends JPanel implements ActionListener, Subject {
 
+    protected ArrayList<Observer> observers;
     private final Color MENU_PANEL_BACKCOLOR = Palette.halayaUbe;
     private final Color MENU_FORECOLOR = Palette.middleRedPurple;
     private final Color MENU_BACKCOLOR = Palette.paynesGrey;
@@ -16,6 +19,8 @@ public abstract class MenuBase extends JPanel implements ActionListener {
     private JMenuBar jmbMenuBar;
 
     public MenuBase() {
+        observers = new ArrayList<>();
+
         setBackground(MENU_PANEL_BACKCOLOR);
         setLayout(new BorderLayout());
 
@@ -47,4 +52,20 @@ public abstract class MenuBase extends JPanel implements ActionListener {
     protected JMenuBar getMenuBar() {
         return jmbMenuBar;
     }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void unregisterObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Font dummy) {
+
+    }
+
 }
