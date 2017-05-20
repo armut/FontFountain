@@ -56,6 +56,7 @@ public class Caption extends JPanel {
     private JButton initCloseButton(Window window) {
         JButton jbClose = new JButton(imgClose);
         jbClose.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jbClose.setToolTipText("Close");
         jbClose.setOpaque(false);
         jbClose.setFocusPainted(false);
         jbClose.setBorderPainted(false);
@@ -84,6 +85,7 @@ public class Caption extends JPanel {
     private JButton initMinimizeButton(JFrame frame) {
         JButton jbMin = new JButton(imgMin);
         jbMin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jbMin.setToolTipText("Minimize");
         jbMin.setOpaque(false);
         jbMin.setFocusPainted(false);
         jbMin.setBorderPainted(false);

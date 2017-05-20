@@ -37,7 +37,7 @@ public class FontFountain extends Fenestra implements Observer {
 
     private void setDefaultFont() {
         currentFontSize = 36;
-        currentFont = new Font("Courier", Font.PLAIN, currentFontSize);
+        currentFont = new Font("Serif", Font.PLAIN, currentFontSize);
     }
 
     public static PreviewPanel getPreviewPanel() {
