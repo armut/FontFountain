@@ -19,6 +19,11 @@ public class Palette {
     public final static Color halayaUbe = new Color(105, 56, 92);
     public final static Color middleRedPurple = new Color(35, 12, 51);
     public final static Color paynesGrey = new Color(84, 106, 123);
+    public final static Color cyberGrape = new Color(83, 58, 123);
+    public final static Color middleYellowRed = new Color(234, 186, 107);
+    public final static Color vividCerulean = new Color(0, 171, 231);
+    public final static Color desertSand = new Color(234, 210, 172);
+    public final static Color aztecGold = new Color(192, 152, 88);
 
     private Palette() {
 

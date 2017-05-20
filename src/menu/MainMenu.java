@@ -33,9 +33,9 @@ public class MainMenu extends MenuBase {
     private ArrayList<JMenuItem> generateFileMenu() {
         ArrayList<JMenuItem> fileMenuItems = new ArrayList<>();
         JMenuItem jmLoadFont = generateMenuItem("LOAD FONT");
-        JMenuItem jmDump = generateMenuItem("DUMP FONT LIST");
+        //JMenuItem jmDump = generateMenuItem("DUMP FONT LIST");
         fileMenuItems.add(jmLoadFont);
-        fileMenuItems.add(jmDump);
+        //fileMenuItems.add(jmDump);
         for(JMenuItem item : fileMenuItems)
             item.addActionListener(this);
         return fileMenuItems;

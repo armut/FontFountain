@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public abstract class MenuBase extends JPanel implements ActionListener, Subject {
 
     protected ArrayList<Observer> observers;
-    private final Color MENU_PANEL_BACKCOLOR = Palette.halayaUbe;
+    private final Color MENU_PANEL_BACKCOLOR = Palette.middleYellowRed;
     private final Color MENU_FORECOLOR = Palette.middleRedPurple;
-    private final Color MENU_BACKCOLOR = Palette.paynesGrey;
+    private final Color MENU_BACKCOLOR = Palette.aztecGold;
     private final Font MENU_FONT = new Font("Times", Font.BOLD, 10);
     private JMenuBar jmbMenuBar;
 

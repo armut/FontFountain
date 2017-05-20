@@ -5,6 +5,7 @@ import main.Observer;
 import menu.FontSelectorMenu;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
@@ -70,10 +71,17 @@ public class FontSelector implements Observer {
 
         // Initialize a JScrollPane with our JTable in it.
         JScrollPane scrollPane = new JScrollPane(fontsTable);
+        // Initialize a JPanel to hold the scrollPane and JTable.
+        JPanel jpnlTable = new JPanel(new BorderLayout());
+        jpnlTable.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                Palette.desertSand, 3), "Font List"));
+        jpnlTable.setBackground(Palette.desertSand);
+        jpnlTable.add(scrollPane);
+
 
         // Add the sub-panels to the loom panel to show them up.
         jpnlLoom.add(initSearchfield(), BorderLayout.PAGE_START);
-        jpnlLoom.add(scrollPane, BorderLayout.CENTER);
+        jpnlLoom.add(jpnlTable, BorderLayout.CENTER);
 
         // Instantiate a FontSelectorMenu and register this class as observer.
         FontSelectorMenu menu = new FontSelectorMenu();
@@ -89,8 +97,8 @@ public class FontSelector implements Observer {
         // Initialize a panel for text field.
         JPanel jpnlSearch = new JPanel(new BorderLayout());
         jpnlSearch.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                Palette.darkGunmetal, 3), "Search" ));
-        jpnlSearch.setBackground(Palette.deepTaupe);
+                Palette.mistyRose, 3), "Search" ));
+        jpnlSearch.setBackground(Palette.mistyRose);
 
         // Instantiate the searchField text field and add listeners.
         searchField = new JTextField();
