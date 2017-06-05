@@ -26,8 +26,8 @@ One useful feature in this tool is that you can preview a ttf font which is not 
 
 ![Opening a ttf font which is not installed on the system.](/ss/open.png?raw=true)
 
-Other than the above, this program uses Swing for the GUI and I tried to make a tiny and good-looking windows and dialogs. 
-These window related codes are in the *fenestra* package.
+Other than the above, this program uses Swing for the GUI and I tried to make tiny and good-looking windows and dialogs. 
+Window and caption related code is in the *fenestra* package.
 
 Fonts used in the screenshots are [Fipps](http://www.fontspace.com/pheist/fipps) and [File](http://www.fontfabric.com/file-free-font/) respectively.
 
