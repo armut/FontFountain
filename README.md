@@ -8,7 +8,7 @@ This little program allows users to view system fonts and preview them with samp
 
 Font selector dialog:
 
-![Font selector.](/ss/selector.png?raw=true)
+![Font selector.](/ss/font_selector.png?raw=true)
 
 It is also possible to change the text area's background color and font's fore color in preview:
 
